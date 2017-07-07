@@ -1,0 +1,58 @@
+html {
+  font-family: sans-serif;
+  font-size: calc(2px + 1.6vmin);
+}
+
+body {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #00CCFF;
+  color: #fff;
+}
+main > * + * {
+  margin-top: 1rem;
+}
+main svg {
+  width: 10rem;
+  height: 10rem;
+  fill: #fff;
+}
+main h1 {
+  font-size: 2rem;
+  font-weight: normal;
+}
+main a {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+  letter-spacing: .1rem;
+  opacity: .8;
+}
+main a:hover {
+  opacity: 1;
+}
+main a > * + * {
+  margin-left: 1rem;
+}
+main a svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#sheet {
+  display: none;
+}
