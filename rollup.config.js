@@ -12,7 +12,6 @@ export default {
   },
   plugins: [
     postcss({
-      sourceMap: 'inline',
       extract : true,
       plugins: [ nested() ],
     }),
