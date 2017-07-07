@@ -8,9 +8,20 @@
     "JavaScript"
   ],
   "watch": {
-    "static": { "patterns": "static", "extensions": "*", "quiet": true },
-    "bundle": { "patterns": "src", "extensions": "*.{css,js}", "quiet": true },
-    "server": { "patterns": "package.json", "quiet": true }
+    "static": {
+      "patterns": "static",
+      "extensions": "*",
+      "quiet": true
+    },
+    "bundle": {
+      "patterns": "src",
+      "extensions": "*.{css,js}",
+      "quiet": true
+    },
+    "server": {
+      "patterns": "package.json",
+      "quiet": true
+    }
   },
   "scripts": {
     "static": "ncp static dist",
@@ -32,7 +43,8 @@
     "rollup-plugin-uglify": "^2.0.1"
   },
   "dependencies": {
-    "hyperapp": "0.9.3"
+    "hyperapp": "0.9.3",
+    "whatwg-fetch": "^2.0.3"
   },
   "author": "Luke Jackson",
   "license": "MIT"
