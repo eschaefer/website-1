@@ -7,9 +7,6 @@ import nested from "postcss-nested"
 
 export default {
   format: "iife",
-  moduleContext: {
-    "node_modules/whatwg-fetch/fetch.js": "window"
-  },
   plugins: [
     postcss({
       extract: true,

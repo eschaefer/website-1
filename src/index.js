@@ -1,5 +1,4 @@
 import { h, app } from "hyperapp"
-import "whatwg-fetch"
 import "./index.css"
 
 const main = (p, c) => h("main", p, c)
