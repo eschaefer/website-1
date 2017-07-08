@@ -19,15 +19,13 @@ const use = href =>
   })
 
 app({
-  state: 0,
-  actions: {
-    setState: (s,a,d) => d
-  },
+  state: {},
+  actions: {},
   events: {
     loaded: (s,a) =>
       fetch('https://api.github.com/repos/hyperapp/hyperapp')
       .then(x => x.json())
-      .then(a.setState),
+      .then(d => console.log(d)),
   },
   view: (s,a) =>
     main({},[
