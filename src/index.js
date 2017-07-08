@@ -10,24 +10,20 @@ const link = (p, c) => h("a", p, c)
 const button = (p, c) => h("button", p, c)
 const use = href =>
   h("use", {
-    oncreate: e => {
-      console.log(e)
-      e.setAttributeNS("http://www.w3.org/1999/xlink", "href", href)
-    }
+    oncreate: e =>
+      e.setAttributeNS("http://www.w3.org/1999/xlink", "href", 'icons.svg#' + href)
   })
 
 app({
   state: {},
   actions: {},
-  events: {
-    loaded: (s, a) => {}
-  },
+  events: {},
   view: (s, a) =>
     main({}, [
-      icon("#icon-hyperapp"),
+      icon("hyperapp"),
       h1({}, "1 KB JavaScript library for building frontend applications"),
       link({ href: "https://github.com/hyperapp/hyperapp" }, [
-        icon("#icon-github"),
+        icon("github"),
         span({}, "GITHUB REPOSITORY")
       ])
     ])
