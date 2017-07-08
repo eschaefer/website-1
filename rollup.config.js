@@ -6,18 +6,18 @@ import postcss from "rollup-plugin-postcss"
 import nested from "postcss-nested"
 
 export default {
-  format: 'iife',
+  format: "iife",
   moduleContext: {
-    'node_modules/whatwg-fetch/fetch.js': 'window',
+    "node_modules/whatwg-fetch/fetch.js": "window"
   },
   plugins: [
     postcss({
-      extract : true,
-      plugins: [ nested() ],
+      extract: true,
+      plugins: [nested()]
     }),
     commonjs(),
     resolve({ jsnext: true }),
-    buble({ jsx: 'h' }),
-    uglify(),
-  ],
+    buble({ jsx: "h" }),
+    uglify()
+  ]
 }

@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "Website for the HyperApp framework",
   "main": "src/index.js",
-  "keywords": [
-    "HyperApp",
-    "JavaScript"
-  ],
+  "keywords": ["HyperApp"],
   "watch": {
     "static": {
       "patterns": "static",
