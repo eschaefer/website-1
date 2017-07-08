@@ -26,7 +26,7 @@ app({
   view: (s, a) =>
     main({}, [
       icon("#icon-hyperapp"),
-      h1({}, "1 KB JavaScript library for building frontend applications."),
+      h1({}, "1 KB JavaScript library for building frontend applications"),
       link({ href: "https://github.com/hyperapp/hyperapp" }, [
         icon("#icon-github"),
         span({}, "GITHUB REPOSITORY")
