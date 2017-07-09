@@ -11,7 +11,7 @@ const button = (p, c) => h("button", p, c)
 const use = href =>
   h("use", {
     oncreate: e =>
-      e.setAttributeNS("http://www.w3.org/1999/xlink", "href", 'icons.svg#' + href)
+      e.setAttributeNS("http://www.w3.org/1999/xlink", "href", '/icons.svg#' + href)
   })
 
 app({
