@@ -22,9 +22,27 @@ app({
     main({}, [
       icon("hyperapp"),
       h1({}, "1 KB JavaScript library for building frontend applications"),
-      link({ href: "https://github.com/hyperapp/hyperapp" }, [
-        icon("github"),
-        span({}, "GITHUB REPOSITORY")
+      h('row-', { class: 'social', gap: '1' }, [
+        link({ href: "https://github.com/hyperapp/hyperapp" }, [
+          icon("github"),
+          span({}, "GITHUB")
+        ]),
+        link({ href: "https://hyperappjs.slack.com" }, [
+          icon("slack"),
+          span({}, "SLACK")
+        ]),
+        link({ href: "https://twitter.com/hyperappjs" }, [
+          icon("twitter"),
+          span({}, "TWITTER")
+        ]),
+      ]),
+      h('row-', { class: 'reading', gap: '1' }, [
+        link({ href: "https://github.com/hyperapp/hyperapp/tree/master/src" }, [
+          span({}, "READ THE CODE")
+        ]),
+        link({ href: "https://github.com/hyperapp/hyperapp/tree/master/docs" }, [
+          span({}, "READ THE DOCS")
+        ]),
       ])
     ])
 })
