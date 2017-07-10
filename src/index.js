@@ -27,7 +27,7 @@ app({
           icon("github"),
           span({}, "GITHUB")
         ]),
-        link({ href: "https://hyperappjs.slack.com" }, [
+        link({ href: "https://hyperappjs.herokuapp.com" }, [
           icon("slack"),
           span({}, "SLACK")
         ]),
@@ -40,7 +40,7 @@ app({
         link({ href: "https://github.com/hyperapp/hyperapp/tree/master/src" }, [
           span({}, "READ THE CODE")
         ]),
-        link({ href: "https://github.com/hyperapp/hyperapp/tree/master/docs" }, [
+        link({ href: "https://github.com/hyperapp/hyperapp/blob/master/docs/getting-started.md#hello-world" }, [
           span({}, "READ THE DOCS")
         ]),
       ])
