@@ -11,7 +11,11 @@ const button = (p, c) => h("button", p, c)
 const use = href =>
   h("use", {
     oncreate: e =>
-      e.setAttributeNS("http://www.w3.org/1999/xlink", "href", '/icons.svg#' + href)
+      e.setAttributeNS(
+        "http://www.w3.org/1999/xlink",
+        "href",
+        "/icons.svg#" + href
+      )
   })
 
 app({
@@ -22,7 +26,7 @@ app({
     main({}, [
       icon("hyperapp"),
       h1({}, "1 KB JavaScript library for building frontend applications"),
-      h('row-', { class: 'social', gap: '1' }, [
+      h("row-", { class: "social", gap: "1" }, [
         link({ href: "https://github.com/hyperapp/hyperapp" }, [
           icon("github"),
           span({}, "GITHUB")
@@ -34,15 +38,19 @@ app({
         link({ href: "https://twitter.com/hyperappjs" }, [
           icon("twitter"),
           span({}, "TWITTER")
-        ]),
+        ])
       ]),
-      h('row-', { class: 'reading', gap: '1' }, [
+      h("row-", { class: "reading", gap: "1" }, [
         link({ href: "https://github.com/hyperapp/hyperapp/tree/master/src" }, [
           span({}, "READ THE CODE")
         ]),
-        link({ href: "https://github.com/hyperapp/hyperapp/blob/master/docs/getting-started.md#hello-world" }, [
-          span({}, "READ THE DOCS")
-        ]),
+        link(
+          {
+            href:
+              "https://github.com/hyperapp/hyperapp/blob/master/docs/getting-started.md#hello-world"
+          },
+          [span({}, "READ THE DOCS")]
+        )
       ])
     ])
 })
