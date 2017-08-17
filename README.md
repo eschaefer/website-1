@@ -2,16 +2,22 @@
 
 A landing page directing users to various hyper resources.
 
-![hyperapp-landing-page](https://user-images.githubusercontent.com/1457604/27994723-f1d9bb16-64ba-11e7-9e5d-9e99fbb914a1.png)
-
+![HyperApp Website](https://user-images.githubusercontent.com/56996/29433459-2415578c-83da-11e7-93be-4928c554f36e.png)
 
 ## Develop
 
 Once you have cloned or forked this project, use the following tasks from the project root:
 
+Install all dependencies.
+
 ```
-npm install     // Install all dependencies
-npm start       // Build and watch files for changes
+npm install
 ```
 
-This will build the application and serve it on http://localhost:8080
+Build and watch files for changes.
+
+```
+npm start
+```
+
+This will build the application and serve it on http://localhost:8080. Enjoy!
