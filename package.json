@@ -1,9 +1,9 @@
 {
   "name": "hyperapp.js.org",
   "version": "1.0.0",
-  "description": "Website for the HyperApp framework",
+  "description": "Hyperapp Website",
   "main": "src/index.js",
-  "keywords": ["HyperApp"],
+  "keywords": ["hyperapp"],
   "watch": {
     "static": {
       "patterns": "static",
