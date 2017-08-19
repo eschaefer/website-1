@@ -21,7 +21,7 @@ body {
     width: 100%;
     height: 100%;
     animation: fade 20s infinite;
-    background-image: linear-gradient(to bottom, #32d6ff, #00c8ff);
+    background-image: linear-gradient(to bottom, #00b5ff, #00c8ff);
     z-index: -1;
   }
 }
