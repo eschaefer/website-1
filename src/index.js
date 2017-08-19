@@ -47,7 +47,7 @@ app({
         link(
           {
             href:
-              "https://github.com/hyperapp/hyperapp/blob/master/docs/getting-started.md#hello-world"
+              "https://github.com/hyperapp/hyperapp/blob/master/docs/README.md#documentation"
           },
           [span({}, "READ THE DOCS")]
         )
