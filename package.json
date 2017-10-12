@@ -40,8 +40,8 @@
     "rollup-plugin-uglify": "^2.0.1"
   },
   "dependencies": {
-    "@hyperapp/html": "^0.2.0",
-    "hyperapp": "0.9.3"
+    "@hyperapp/html": "^0.5.1",
+    "hyperapp": "0.15.1"
   },
   "author": "Luke Jackson",
   "license": "MIT"
