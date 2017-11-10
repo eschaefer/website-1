@@ -24,20 +24,32 @@
     "static": "ncp static dist",
     "bundle": "rollup -c -i src/index.js -o dist/index.js",
     "server": "http-server-spa dist",
-    "build": "npm run static && npm run bundle",
-    "start": "npm-watch"
+    "build": "npm run static && npm run bundle && npm run docs:build",
+    "start": "npm-watch",
+    "docs:prepare": "gitbook install && node docsDownload.js",
+    "docs:move": "rimraf static/docs && mv -f _book static/ && mv static/_book static/docs",
+    "docs:cleanup": "rimraf docs",
+    "docs:build": "npm run docs:prepare && gitbook build && npm run docs:move && npm run docs:cleanup",
+    "docs:watch": "npm run docs:prepare && gitbook serve"
   },
   "devDependencies": {
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-anchorjs": "^1.1.1",
+    "gitbook-plugin-edit-link": "^2.0.2",
+    "gitbook-plugin-github": "^2.0.0",
+    "gitbook-plugin-prism": "^2.3.0",
     "http-server-spa": "^1.2.0",
     "ncp": "^2.0.0",
     "npm-watch": "^0.1.9",
     "postcss-nested": "^2.0.2",
+    "rimraf": "^2.6.2",
     "rollup": "^0.43.0",
     "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-postcss": "^0.5.3",
-    "rollup-plugin-uglify": "^2.0.1"
+    "rollup-plugin-uglify": "^2.0.1",
+    "shelljs": "^0.7.8"
   },
   "dependencies": {
     "@hyperapp/html": "^0.5.1",
