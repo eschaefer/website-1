@@ -37,13 +37,16 @@ app({
         ])
       ]),
       h("row-", { class: "reading", gap: "1" }, [
-        link({ href: "https://github.com/hyperapp/hyperapp/tree/master/src" }, [
-          span("READ THE CODE")
-        ]),
         link(
           {
             href:
-              "https://github.com/hyperapp/hyperapp/blob/master/docs/README.md#documentation"
+              "https://github.com/hyperapp/hyperapp/tree/master/src"
+          },
+          [span("READ THE CODE")]
+        ),
+        link(
+          {
+            href: "https://temp.deadhare.com/docs"
           },
           [span("READ THE DOCS")]
         )
