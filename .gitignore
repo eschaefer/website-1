@@ -5,5 +5,4 @@ yarn.lock
 
 # For docs generation
 /temp
-/docs
 /_book
