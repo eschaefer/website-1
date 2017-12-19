@@ -12,12 +12,6 @@ Install all dependencies.
 npm install
 ```
 
-Build documentation
-
-```
-npm run build:docs
-```
-
 Build and watch files for changes.
 
 ```
