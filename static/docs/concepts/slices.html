@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="modules.html" />
+    <link rel="next" href="sanitation.html" />
     
     
     <link rel="prev" href="keys.html" />
@@ -161,7 +161,20 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="components.html">
+        <li class="chapter " data-level="1.3.1" data-path="vnodes.html">
+            
+                <a href="vnodes.html">
+            
+                    
+                    Virtual Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="components.html">
             
                 <a href="components.html">
             
@@ -174,12 +187,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="lifecycle.html">
+        <li class="chapter " data-level="1.3.3" data-path="lifecycle-events.html">
             
-                <a href="lifecycle.html">
+                <a href="lifecycle-events.html">
             
                     
-                    Lifecycle
+                    Lifecycle Events
             
                 </a>
             
@@ -187,7 +200,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="keys.html">
+        <li class="chapter " data-level="1.3.4" data-path="keys.html">
             
                 <a href="keys.html">
             
@@ -200,25 +213,12 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.4" data-path="slices.html">
+        <li class="chapter active" data-level="1.3.5" data-path="slices.html">
             
                 <a href="slices.html">
             
                     
                     Slices
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="modules.html">
-            
-                <a href="modules.html">
-            
-                    
-                    Modules
             
                 </a>
             
@@ -377,14 +377,14 @@
 <p>Hyperapp uses a single state tree object that contains all your application level state and serves as the single source of truth. This also means, if you are coming from Redux/Flux, that you have only one store for each app. A single state tree makes it straightforward to locate a specific piece of state, and allows for incredibly easy debugging.</p>
 <p>A single state tree is not free from struggle. It can be daunting to update a part of the state deeply nested in the state tree immutably without resorting to functional lenses / setters or advanced martial arts.</p>
 <p>State slices address this issue with actions that access a slice of the state tree that corresponds to the namespace where both state and action are declared.</p>
-<pre class="language-"><code class="lang-js">actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-  <span class="token function">hello</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">// The state is the global `state`.</span>
+<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> actions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  hello<span class="token punctuation">:</span> data <span class="token operator">=</span><span class="token operator">&gt;</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// The state is the global `state`.</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   foo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    bar<span class="token punctuation">:</span> <span class="token punctuation">{</span> 
-      <span class="token function">howdy</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment" spellcheck="true">// The state is: `state[foo][bar]`</span>
+    bar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      howdy<span class="token punctuation">:</span> data <span class="token operator">=</span><span class="token operator">&gt;</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// The state is: `state[foo][bar]`</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
@@ -392,7 +392,7 @@
 </code></pre>
 <p>State slices allow you to update deeply nested state easily and immutably.</p>
 <p>For example, before when you had something like this:</p>
-<pre class="language-"><code class="lang-js">state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
   foo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     bar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
       value<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
@@ -403,8 +403,8 @@
 </code></pre>
 <p>Then when you wanted to update <code>value</code>, you had to update an entire record (<strong>including siblings</strong>), since there is no way to single out <code>value</code> from a nested state.</p>
 <p>In other words, you had to write something like the following in order to update the tree immutably.</p>
-<pre class="language-"><code class="lang-js">actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-  <span class="token function">updateValue</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> actions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  updateValue<span class="token punctuation">:</span> data <span class="token operator">=</span><span class="token operator">&gt;</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token punctuation">{</span>
       foo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
         bar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
@@ -417,7 +417,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>With state slices, it&apos;s possible to update <code>value</code> more simply. In order to do this, your state must look like this.</p>
-<pre class="language-"><code class="lang-js">state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
   foo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     bar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
       value<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
@@ -427,12 +427,12 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>You will have a corresponding action inside a namespace that matches the state you want to update.</p>
-<pre class="language-"><code class="lang-js">actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> actions <span class="token operator">=</span> <span class="token punctuation">{</span>
   foo<span class="token punctuation">:</span> <span class="token punctuation">{</span>
     bar<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-      <span class="token function">updateValue</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      updateValue<span class="token punctuation">:</span> data <span class="token operator">=</span><span class="token operator">&gt;</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">// State is `state[foo][bar]`</span>
-        <span class="token keyword">return</span> <span class="token punctuation">{</span> value<span class="token punctuation">:</span> state<span class="token punctuation">.</span>value <span class="token operator">+</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span> value<span class="token punctuation">:</span> state<span class="token punctuation">.</span>value <span class="token operator">+</span> data <span class="token punctuation">}</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
@@ -470,7 +470,7 @@
                 </a>
                 
                 
-                <a href="modules.html" class="navigation navigation-next " aria-label="Next page: Modules">
+                <a href="sanitation.html" class="navigation navigation-next " aria-label="Next page: Sanitation">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -481,7 +481,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Slices","level":"1.3.4","depth":2,"next":{"title":"Modules","level":"1.3.5","depth":2,"path":"concepts/modules.md","ref":"concepts/modules.md","articles":[]},"previous":{"title":"Keys","level":"1.3.3","depth":2,"path":"concepts/keys.md","ref":"concepts/keys.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"concepts/slices.md","mtime":"2017-11-09T19:01:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-11-10T08:55:56.528Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Slices","level":"1.3.5","depth":2,"next":{"title":"Sanitation","level":"1.3.6","depth":2,"path":"concepts/sanitation.md","ref":"concepts/sanitation.md","articles":[]},"previous":{"title":"Keys","level":"1.3.4","depth":2,"path":"concepts/keys.md","ref":"concepts/keys.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"concepts/slices.md","mtime":"2017-12-19T22:10:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-19T22:15:31.175Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

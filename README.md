@@ -12,6 +12,12 @@ Install all dependencies.
 npm install
 ```
 
+Build documentation
+
+```
+npm run build:docs
+```
+
 Build and watch files for changes.
 
 ```
@@ -23,4 +29,3 @@ This will build the application and serve it on http://localhost:8080.
 ---
 
 Happy Hacking!
-

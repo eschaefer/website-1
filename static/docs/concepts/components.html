@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="lifecycle.html" />
+    <link rel="next" href="lifecycle-events.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="vnodes.html" />
     
 
     </head>
@@ -161,7 +161,20 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.3.1" data-path="components.html">
+        <li class="chapter " data-level="1.3.1" data-path="vnodes.html">
+            
+                <a href="vnodes.html">
+            
+                    
+                    Virtual Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.2" data-path="components.html">
             
                 <a href="components.html">
             
@@ -174,12 +187,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="lifecycle.html">
+        <li class="chapter " data-level="1.3.3" data-path="lifecycle-events.html">
             
-                <a href="lifecycle.html">
+                <a href="lifecycle-events.html">
             
                     
-                    Lifecycle
+                    Lifecycle Events
             
                 </a>
             
@@ -187,7 +200,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="keys.html">
+        <li class="chapter " data-level="1.3.4" data-path="keys.html">
             
                 <a href="keys.html">
             
@@ -200,25 +213,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="slices.html">
+        <li class="chapter " data-level="1.3.5" data-path="slices.html">
             
                 <a href="slices.html">
             
                     
                     Slices
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="modules.html">
-            
-                <a href="modules.html">
-            
-                    
-                    Modules
             
                 </a>
             
@@ -374,73 +374,56 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="components">Components</h1>
-<p>A component is a pure function that returns a virtual node. Unlike a view, they are not pre-wired to your application state or actions. Components are reusable blocks of code that encapsulate markup, styles and behaviors that belong together.</p>
+<p>A component is a pure function that returns a <a href="vnodes.html">virtual node</a>. Unlike a view, they are not pre-wired to your application state or actions. Components are reusable blocks of code that encapsulate markup, styles and behaviors that belong together.</p>
 <p><a href="https://codepen.io/hyperapp/pen/zNxRLy" target="_blank">Try it Online</a></p>
-<pre class="language-"><code class="lang-jsx"><span class="token keyword">function</span> <span class="token function">TodoItem</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">,</span> value<span class="token punctuation">,</span> done<span class="token punctuation">,</span> toggle <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span>
-      <span class="token attr-name">class</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>done <span class="token operator">&amp;&amp;</span> <span class="token string">&quot;done&quot;</span><span class="token punctuation">}</span></span>
-      <span class="token attr-name">onclick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span>
-        <span class="token function">toggle</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-          value<span class="token punctuation">:</span> done<span class="token punctuation">,</span>
-          id<span class="token punctuation">:</span> id
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span>
-    <span class="token punctuation">&gt;</span></span>
-      <span class="token punctuation">{</span>value<span class="token punctuation">}</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> h<span class="token punctuation">,</span> app <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;hyperapp&quot;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> state<span class="token punctuation">,</span> actions <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./todos&quot;</span>
 
-<span class="token keyword">function</span> <span class="token function">mainView</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> actions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Todo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
-        <span class="token punctuation">{</span>state<span class="token punctuation">.</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">,</span> value<span class="token punctuation">,</span> done <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TodoItem</span>
-            <span class="token attr-name">id</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>id<span class="token punctuation">}</span></span>
-            <span class="token attr-name">value</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>value<span class="token punctuation">}</span></span>
-            <span class="token attr-name">done</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>done<span class="token punctuation">}</span></span>
-            <span class="token attr-name">toggle</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>actions<span class="token punctuation">.</span>toggle<span class="token punctuation">}</span></span>
-          <span class="token punctuation">/&gt;</span></span>
-        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+<span class="token keyword">const</span> TodoItem <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">,</span> value<span class="token punctuation">,</span> done<span class="token punctuation">,</span> toggle <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span>
+    <span class="token attr-name">class</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>done <span class="token operator">&amp;&amp;</span> <span class="token string">&quot;done&quot;</span><span class="token punctuation">}</span></span>
+    <span class="token attr-name">onclick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span>
+      <span class="token function">toggle</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        value<span class="token punctuation">:</span> done<span class="token punctuation">,</span>
+        id<span class="token punctuation">:</span> id
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+  <span class="token punctuation">&gt;</span></span>
+    <span class="token punctuation">{</span>value<span class="token punctuation">}</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> view <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> actions<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Todo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+      <span class="token punctuation">{</span>state<span class="token punctuation">.</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> id<span class="token punctuation">,</span> value<span class="token punctuation">,</span> done <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TodoItem</span> <span class="token attr-name">id</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>id<span class="token punctuation">}</span></span> <span class="token attr-name">value</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>value<span class="token punctuation">}</span></span> <span class="token attr-name">done</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>done<span class="token punctuation">}</span></span> <span class="token attr-name">toggle</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>actions<span class="token punctuation">.</span>toggle<span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> main <span class="token operator">=</span> <span class="token function">app</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> actions<span class="token punctuation">,</span> view<span class="token punctuation">,</span> document<span class="token punctuation">.</span>body<span class="token punctuation">)</span>
 </code></pre>
 <p>If you don&apos;t know all the properties that you want to place in a component ahead of time, you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator" target="_blank">spread syntax</a>.</p>
-<pre class="language-"><code class="lang-jsx"><span class="token keyword">function</span> <span class="token function">TodoList</span><span class="token punctuation">(</span><span class="token punctuation">{</span> todos<span class="token punctuation">,</span> toggle <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>todo <span class="token operator">=</span><span class="token operator">&gt;</span>
-      <span class="token operator">&lt;</span>TodoItem <span class="token punctuation">{</span><span class="token operator">...</span>todo<span class="token punctuation">}</span>
-        toggle<span class="token operator">=</span><span class="token punctuation">{</span>toggle<span class="token punctuation">}</span>
-      <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> TodoList <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> todos<span class="token punctuation">,</span> toggle <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>todo <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>TodoItem <span class="token punctuation">{</span><span class="token operator">...</span>todo<span class="token punctuation">}</span> toggle<span class="token operator">=</span><span class="token punctuation">{</span>toggle<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
 </code></pre>
 <p>Note that when using JSX, components <a href="https://facebook.github.io/react/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized" target="_blank">must be capitalized</a> or contain a <code>.</code> in their name.</p>
 <h2 id="children-composition">Children Composition</h2>
 <p>Components receive children elements in the second argument.</p>
-<pre class="language-"><code class="lang-jsx"><span class="token keyword">function</span> <span class="token function">Box</span><span class="token punctuation">(</span><span class="token punctuation">{</span> color <span class="token punctuation">}</span><span class="token punctuation">,</span> children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token string">`box box-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>color<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token punctuation">{</span>children<span class="token punctuation">}</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> Box <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> color <span class="token punctuation">}</span><span class="token punctuation">,</span> children<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token string">`box box-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>color<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
 </code></pre>
 <p>This lets you and other components pass arbitrary children down to them.</p>
-<pre class="language-"><code class="lang-jsx"><span class="token keyword">function</span> <span class="token function">HelloBox</span><span class="token punctuation">(</span><span class="token punctuation">{</span> name <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Box</span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>green<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>title<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-        Hello<span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token operator">!</span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Box</span><span class="token punctuation">&gt;</span></span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> HelloBox <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> name <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Box</span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>green<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>title<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Hello<span class="token punctuation">,</span> <span class="token punctuation">{</span>name<span class="token punctuation">}</span><span class="token operator">!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Box</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
 </code></pre>
 
                                 
@@ -469,12 +452,12 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Concepts">
+                <a href="vnodes.html" class="navigation navigation-prev " aria-label="Previous page: Virtual Nodes">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="lifecycle.html" class="navigation navigation-next " aria-label="Next page: Lifecycle">
+                <a href="lifecycle-events.html" class="navigation navigation-next " aria-label="Next page: Lifecycle Events">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -485,7 +468,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Components","level":"1.3.1","depth":2,"next":{"title":"Lifecycle","level":"1.3.2","depth":2,"path":"concepts/lifecycle.md","ref":"concepts/lifecycle.md","articles":[]},"previous":{"title":"Concepts","level":"1.3","depth":1,"path":"concepts/README.md","ref":"concepts/README.md","articles":[{"title":"Components","level":"1.3.1","depth":2,"path":"concepts/components.md","ref":"concepts/components.md","articles":[]},{"title":"Lifecycle","level":"1.3.2","depth":2,"path":"concepts/lifecycle.md","ref":"concepts/lifecycle.md","articles":[]},{"title":"Keys","level":"1.3.3","depth":2,"path":"concepts/keys.md","ref":"concepts/keys.md","articles":[]},{"title":"Slices","level":"1.3.4","depth":2,"path":"concepts/slices.md","ref":"concepts/slices.md","articles":[]},{"title":"Modules","level":"1.3.5","depth":2,"path":"concepts/modules.md","ref":"concepts/modules.md","articles":[]},{"title":"Sanitation","level":"1.3.6","depth":2,"path":"concepts/sanitation.md","ref":"concepts/sanitation.md","articles":[]},{"title":"Hydration","level":"1.3.7","depth":2,"path":"concepts/hydration.md","ref":"concepts/hydration.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"concepts/components.md","mtime":"2017-11-09T19:01:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-11-10T08:55:56.528Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Components","level":"1.3.2","depth":2,"next":{"title":"Lifecycle Events","level":"1.3.3","depth":2,"path":"concepts/lifecycle-events.md","ref":"concepts/lifecycle-events.md","articles":[]},"previous":{"title":"Virtual Nodes","level":"1.3.1","depth":2,"path":"concepts/vnodes.md","ref":"concepts/vnodes.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"concepts/components.md","mtime":"2017-12-19T22:10:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-19T22:15:31.175Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

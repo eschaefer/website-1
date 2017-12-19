@@ -161,7 +161,20 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="../concepts/components.html">
+        <li class="chapter " data-level="1.3.1" data-path="../concepts/vnodes.html">
+            
+                <a href="../concepts/vnodes.html">
+            
+                    
+                    Virtual Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../concepts/components.html">
             
                 <a href="../concepts/components.html">
             
@@ -174,12 +187,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="../concepts/lifecycle.html">
+        <li class="chapter " data-level="1.3.3" data-path="../concepts/lifecycle-events.html">
             
-                <a href="../concepts/lifecycle.html">
+                <a href="../concepts/lifecycle-events.html">
             
                     
-                    Lifecycle
+                    Lifecycle Events
             
                 </a>
             
@@ -187,7 +200,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../concepts/keys.html">
+        <li class="chapter " data-level="1.3.4" data-path="../concepts/keys.html">
             
                 <a href="../concepts/keys.html">
             
@@ -200,25 +213,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="../concepts/slices.html">
+        <li class="chapter " data-level="1.3.5" data-path="../concepts/slices.html">
             
                 <a href="../concepts/slices.html">
             
                     
                     Slices
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="../concepts/modules.html">
-            
-                <a href="../concepts/modules.html">
-            
-                    
-                    Modules
             
                 </a>
             
@@ -376,10 +376,12 @@
                                 <h1 id="tweetbox">TweetBox</h1>
 <p>In this example we&apos;ll create a TweetBox.</p>
 <p><a href="https://codepen.io/hyperapp/pen/bgWBdV?editors=0010" target="_blank">Try it Online</a></p>
-<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> MAX_LENGTH <span class="token operator">=</span> <span class="token number">120</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> h<span class="token punctuation">,</span> app <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;hyperapp&quot;</span>
+
+<span class="token keyword">const</span> MAX_LENGTH <span class="token operator">=</span> <span class="token number">120</span>
 <span class="token keyword">const</span> OFFSET <span class="token operator">=</span> <span class="token number">10</span>
 
-<span class="token keyword">const</span> OverflowWidget <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> text<span class="token punctuation">,</span> offset<span class="token punctuation">,</span> count <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+<span class="token keyword">const</span> OverflowWidget <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> text<span class="token punctuation">,</span> offset<span class="token punctuation">,</span> count <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>overflow<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Whoops<span class="token operator">!</span> Too long<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
@@ -387,8 +389,9 @@
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>overflow-text<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>text<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
 
-<span class="token keyword">const</span> Tweetbox <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> count<span class="token punctuation">,</span> text<span class="token punctuation">,</span> update <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+<span class="token keyword">const</span> Tweetbox <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> count<span class="token punctuation">,</span> text<span class="token punctuation">,</span> update <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>flex-outer<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
@@ -397,9 +400,7 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
 
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>flex-inner<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class={count</span> <span class="token punctuation">&gt;</span></span> OFFSET <span class="token operator">?</span> <span class="token string">&quot;&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;overflow-count&quot;</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
-            <span class="token punctuation">{</span>count<span class="token punctuation">}</span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class={count</span> <span class="token punctuation">&gt;</span></span> OFFSET <span class="token operator">?</span> <span class="token string">&quot;&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;overflow-count&quot;</span><span class="token punctuation">}</span><span class="token operator">&gt;</span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 
           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span>
             <span class="token attr-name">onclick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">alert</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">}</span></span>
@@ -410,36 +411,41 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
 
-      <span class="token punctuation">{</span>count <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span>
+      <span class="token punctuation">{</span>count <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>OverflowWidget</span>
           <span class="token attr-name">text</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>text<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>count <span class="token operator">-</span> OFFSET<span class="token punctuation">)</span><span class="token punctuation">}</span></span>
           <span class="token attr-name">offset</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>OFFSET<span class="token punctuation">}</span></span>
           <span class="token attr-name">count</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>count<span class="token punctuation">}</span></span>
-        <span class="token punctuation">/&gt;</span></span><span class="token punctuation">}</span>
+        <span class="token punctuation">/&gt;</span></span>
+      <span class="token punctuation">)</span><span class="token punctuation">}</span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
 
-<span class="token function">app</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    text<span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
-    count<span class="token punctuation">:</span> MAX_LENGTH
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  view<span class="token punctuation">:</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> actions<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Tweetbox</span>
-      <span class="token attr-name">text</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>text<span class="token punctuation">}</span></span>
-      <span class="token attr-name">count</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>count<span class="token punctuation">}</span></span>
-      <span class="token attr-name">update</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span> actions<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span></span>
-    <span class="token punctuation">/&gt;</span></span><span class="token punctuation">,</span>
-  actions<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    update<span class="token punctuation">:</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> text <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
-      text<span class="token punctuation">,</span>
-      count<span class="token punctuation">:</span> state<span class="token punctuation">.</span>count <span class="token operator">+</span> state<span class="token punctuation">.</span>text<span class="token punctuation">.</span>length <span class="token operator">-</span> text<span class="token punctuation">.</span>length
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  text<span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  count<span class="token punctuation">:</span> MAX_LENGTH
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> actions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  update<span class="token punctuation">:</span> text <span class="token operator">=</span><span class="token operator">&gt;</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    text<span class="token punctuation">,</span>
+    count<span class="token punctuation">:</span> state<span class="token punctuation">.</span>count <span class="token operator">+</span> state<span class="token punctuation">.</span>text<span class="token punctuation">.</span>length <span class="token operator">-</span> text<span class="token punctuation">.</span>length
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> view <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> actions<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Tweetbox</span>
+    <span class="token attr-name">text</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>text<span class="token punctuation">}</span></span>
+    <span class="token attr-name">count</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>count<span class="token punctuation">}</span></span>
+    <span class="token attr-name">update</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span> actions<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span></span>
+  <span class="token punctuation">/&gt;</span></span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> main <span class="token operator">=</span> <span class="token function">app</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> actions<span class="token punctuation">,</span> view<span class="token punctuation">,</span> document<span class="token punctuation">.</span>body<span class="token punctuation">)</span>
 </code></pre>
 <p>The state consists of two properties: <code>text</code>, the tweet; and <code>count</code>, the number of remaining characters, initialized to <code>MAX_LENGTH</code>.</p>
-<pre class="language-"><code class="lang-jsx">state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
   text<span class="token punctuation">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
   count<span class="token punctuation">:</span> MAX_LENGTH
 <span class="token punctuation">}</span>
@@ -452,10 +458,12 @@
 <span class="token punctuation">/&gt;</span></span>
 </code></pre>
 <p>To update the text and calculate the remaining characters, call <code>actions.update</code>.</p>
-<pre class="language-"><code class="lang-jsx">update<span class="token punctuation">:</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> text <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
-  text<span class="token punctuation">,</span>
-  count<span class="token punctuation">:</span> state<span class="token punctuation">.</span>count <span class="token operator">+</span> state<span class="token punctuation">.</span>text<span class="token punctuation">.</span>length <span class="token operator">-</span> text<span class="token punctuation">.</span>length
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> actions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  update<span class="token punctuation">:</span> text <span class="token operator">=</span><span class="token operator">&gt;</span> state <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    text<span class="token punctuation">,</span>
+    count<span class="token punctuation">:</span> state<span class="token punctuation">.</span>count <span class="token operator">+</span> state<span class="token punctuation">.</span>text<span class="token punctuation">.</span>length <span class="token operator">-</span> text<span class="token punctuation">.</span>length
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>The subtracting the length of the current text, from the length of the previous text, tells us how the number of remaining characters has changed. Hence the new count of remaining characters is the old count plus the aforementioned difference.</p>
 <p>When the input is empty, this operation is equivalent to <code>(MAX_LENGTH - text.length)</code>.</p>
@@ -479,9 +487,7 @@
 <p>The tweet button is also disabled when <code>state.count === MAX_LENGTH</code>, because that means we haven&apos;t entered any characters.</p>
 <p>The OverflowWidget tag displays the oveflowed part of the message and a few adjacent characters for context. The constant <code>OFFSET</code> tells us how many extra characters to slice off <code>state.text</code>.</p>
 <p>By passing <code>OFFSET</code> into OverflowWidget we are able to slice <code>text</code> further and apply our <code>overflow-text</code> class to the sliced result.</p>
-<pre class="language-"><code class="lang-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>overflow-text<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-  <span class="token punctuation">{</span>text<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">}</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<pre class="language-"><code class="lang-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>overflow-text<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>text<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 
                                 
@@ -526,7 +532,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"TweetBox","level":"1.4.1","depth":2,"next":{"title":"Gif Search","level":"1.4.2","depth":2,"path":"tutorials/gif-search.md","ref":"tutorials/gif-search.md","articles":[]},"previous":{"title":"Tutorials","level":"1.4","depth":1,"path":"tutorials/README.md","ref":"tutorials/README.md","articles":[{"title":"TweetBox","level":"1.4.1","depth":2,"path":"tutorials/tweetbox.md","ref":"tutorials/tweetbox.md","articles":[]},{"title":"Gif Search","level":"1.4.2","depth":2,"path":"tutorials/gif-search.md","ref":"tutorials/gif-search.md","articles":[]},{"title":"Countdown Timer","level":"1.4.3","depth":2,"path":"tutorials/countdown-timer.md","ref":"tutorials/countdown-timer.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"tutorials/tweetbox.md","mtime":"2017-11-09T19:01:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-11-10T08:55:56.528Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TweetBox","level":"1.4.1","depth":2,"next":{"title":"Gif Search","level":"1.4.2","depth":2,"path":"tutorials/gif-search.md","ref":"tutorials/gif-search.md","articles":[]},"previous":{"title":"Tutorials","level":"1.4","depth":1,"path":"tutorials/README.md","ref":"tutorials/README.md","articles":[{"title":"TweetBox","level":"1.4.1","depth":2,"path":"tutorials/tweetbox.md","ref":"tutorials/tweetbox.md","articles":[]},{"title":"Gif Search","level":"1.4.2","depth":2,"path":"tutorials/gif-search.md","ref":"tutorials/gif-search.md","articles":[]},{"title":"Countdown Timer","level":"1.4.3","depth":2,"path":"tutorials/countdown-timer.md","ref":"tutorials/countdown-timer.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"tutorials/tweetbox.md","mtime":"2017-12-19T22:10:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-19T22:15:31.175Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

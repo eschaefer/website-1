@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Sanitation · Hyperapp documentation</title>
+        <title>Virtual Nodes · Hyperapp documentation</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="hydration.html" />
+    <link rel="next" href="components.html" />
     
     
-    <link rel="prev" href="slices.html" />
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -161,7 +161,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="vnodes.html">
+        <li class="chapter active" data-level="1.3.1" data-path="vnodes.html">
             
                 <a href="vnodes.html">
             
@@ -226,7 +226,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.6" data-path="sanitation.html">
+        <li class="chapter " data-level="1.3.6" data-path="sanitation.html">
             
                 <a href="sanitation.html">
             
@@ -358,7 +358,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Sanitation</a>
+        <a href=".." >Virtual Nodes</a>
     </h1>
 </div>
 
@@ -373,23 +373,47 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="sanitation">Sanitation</h1>
-<p>Use of the innerHTML method can lead to cross-site scripting (<a href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank">XSS</a>) vunerabilities if not properly sanitized. If you can&apos;t use vnodes for any reason, create your own replacement function to explicitly state the intent of performing an &quot;unsafe&quot; operation.</p>
-<pre class="language-"><code class="lang-jsx"><span class="token keyword">function</span> <span class="token function">dangerouslySetInnerHTML</span><span class="token punctuation">(</span>html<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> element <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-    element<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> html
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">function</span> <span class="token function">ItemContent</span><span class="token punctuation">(</span><span class="token punctuation">{</span> item<span class="token punctuation">:</span> <span class="token punctuation">{</span> url<span class="token punctuation">,</span> summary <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>content<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>url<span class="token punctuation">}</span></span> <span class="token attr-name">oncreate</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token function">dangerouslySetInnerHTML</span><span class="token punctuation">(</span>summary<span class="token punctuation">)</span><span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
-  <span class="token punctuation">)</span>
+                                <h1 id="virtual-nodes">Virtual Nodes</h1>
+<p>A virtual node is a JavaScript object that represents an element in the DOM tree.</p>
+<pre class="language-"><code class="lang-js"><span class="token punctuation">{</span>
+  tag<span class="token punctuation">:</span> <span class="token string">&quot;div&quot;</span><span class="token punctuation">,</span>
+  props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token string">&quot;app&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  children<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    tag<span class="token punctuation">:</span> <span class="token string">&quot;h1&quot;</span><span class="token punctuation">,</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    children<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;Hi.&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Setting HTML from code is dangerous because it&apos;s easy to inadvertently expose your users to an XSS attack. <a href="https://github.com/cure53/DOMPurify" target="_blank">DOMPurify</a> and <a href="https://github.com/punkave/sanitize-html" target="_blank">sanitize-html</a> are two popular HTML sanitizer libraries.</p>
+<p>To create a virtual node, use the <code>h</code> function.</p>
+<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> node <span class="token operator">=</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">&quot;div&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token string">&quot;app&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token string">&quot;h1&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">&quot;Hi.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Alternatives to the built-in <code>h()</code> function include <a href="https://facebook.github.io/jsx/" target="_blank">JSX</a>, <a href="https://github.com/choojs/hyperx" target="_blank">hyperx</a>, <a href="https://github.com/trueadm/t7" target="_blank">t7</a> and <a href="https://github.com/hyperapp/html" target="_blank">@hyperapp/html</a>.</p>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> node <span class="token operator">=</span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Hi<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
+</code></pre>
+<p>Virtual node props may include any valid <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes" target="_blank">HTML</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute" target="_blank">SVG</a> attributes, <a href="https://developer.mozilla.org/en-US/docs/Web/Events" target="_blank">DOM</a>, <a href="lifecycle-events.html">lifecycle events</a>, and <a href="keys.html">keys</a>.</p>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> button <span class="token operator">=</span> <span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>button
+    <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;ui button&quot;</span>
+    tabindex<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span>
+    style<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>
+      fontSize<span class="token punctuation">:</span> <span class="token string">&quot;3em&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">}</span>
+    onclick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token punctuation">}</span><span class="token punctuation">}</span>
+  <span class="token operator">&gt;</span>
+    Click Me
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
+</code></pre>
+<p>A function that returns a virtual node is known as a <a href="components.html">component</a>.</p>
 
                                 
                                 </section>
@@ -417,12 +441,12 @@
 
             
                 
-                <a href="slices.html" class="navigation navigation-prev " aria-label="Previous page: Slices">
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Concepts">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="hydration.html" class="navigation navigation-next " aria-label="Next page: Hydration">
+                <a href="components.html" class="navigation navigation-next " aria-label="Next page: Components">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -433,7 +457,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Sanitation","level":"1.3.6","depth":2,"next":{"title":"Hydration","level":"1.3.7","depth":2,"path":"concepts/hydration.md","ref":"concepts/hydration.md","articles":[]},"previous":{"title":"Slices","level":"1.3.5","depth":2,"path":"concepts/slices.md","ref":"concepts/slices.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"concepts/sanitation.md","mtime":"2017-12-19T22:10:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-19T22:15:31.175Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Virtual Nodes","level":"1.3.1","depth":2,"next":{"title":"Components","level":"1.3.2","depth":2,"path":"concepts/components.md","ref":"concepts/components.md","articles":[]},"previous":{"title":"Concepts","level":"1.3","depth":1,"path":"concepts/README.md","ref":"concepts/README.md","articles":[{"title":"Virtual Nodes","level":"1.3.1","depth":2,"path":"concepts/vnodes.md","ref":"concepts/vnodes.md","articles":[]},{"title":"Components","level":"1.3.2","depth":2,"path":"concepts/components.md","ref":"concepts/components.md","articles":[]},{"title":"Lifecycle Events","level":"1.3.3","depth":2,"path":"concepts/lifecycle-events.md","ref":"concepts/lifecycle-events.md","articles":[]},{"title":"Keys","level":"1.3.4","depth":2,"path":"concepts/keys.md","ref":"concepts/keys.md","articles":[]},{"title":"Slices","level":"1.3.5","depth":2,"path":"concepts/slices.md","ref":"concepts/slices.md","articles":[]},{"title":"Sanitation","level":"1.3.6","depth":2,"path":"concepts/sanitation.md","ref":"concepts/sanitation.md","articles":[]},{"title":"Hydration","level":"1.3.7","depth":2,"path":"concepts/hydration.md","ref":"concepts/hydration.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"concepts/vnodes.md","mtime":"2017-12-19T22:10:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-19T22:15:31.175Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

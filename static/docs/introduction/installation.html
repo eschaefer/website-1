@@ -161,7 +161,20 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="../concepts/components.html">
+        <li class="chapter " data-level="1.3.1" data-path="../concepts/vnodes.html">
+            
+                <a href="../concepts/vnodes.html">
+            
+                    
+                    Virtual Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../concepts/components.html">
             
                 <a href="../concepts/components.html">
             
@@ -174,12 +187,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="../concepts/lifecycle.html">
+        <li class="chapter " data-level="1.3.3" data-path="../concepts/lifecycle-events.html">
             
-                <a href="../concepts/lifecycle.html">
+                <a href="../concepts/lifecycle-events.html">
             
                     
-                    Lifecycle
+                    Lifecycle Events
             
                 </a>
             
@@ -187,7 +200,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../concepts/keys.html">
+        <li class="chapter " data-level="1.3.4" data-path="../concepts/keys.html">
             
                 <a href="../concepts/keys.html">
             
@@ -200,25 +213,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="../concepts/slices.html">
+        <li class="chapter " data-level="1.3.5" data-path="../concepts/slices.html">
             
                 <a href="../concepts/slices.html">
             
                     
                     Slices
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="../concepts/modules.html">
-            
-                <a href="../concepts/modules.html">
-            
-                    
-                    Modules
             
                 </a>
             
@@ -373,17 +373,20 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="installation">Installation</h1>
+                                <h2 id="installation">Installation</h2>
 <p>Install with npm or Yarn.</p>
-<pre class="language-"><code>npm i hyperapp
-</code></pre><p>Then with a module bundler like <a href="https://github.com/rollup/rollup" target="_blank">Rollup</a> or <a href="https://github.com/webpack/webpack" target="_blank">Webpack</a>, use as you would anything else.</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> h<span class="token punctuation">,</span> app <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;hyperapp&quot;</span>
+<pre class="language-">
+npm i <a href="https://www.npmjs.com/package/hyperapp" target="_blank">hyperapp</a>
+</pre>
+
+<p>Then with a module bundler like <a href="https://github.com/rollup/rollup" target="_blank">Rollup</a> or <a href="https://github.com/webpack/webpack" target="_blank">Webpack</a>, use as you would anything else.</p>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">import</span> <span class="token punctuation">{</span> h<span class="token punctuation">,</span> app <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;hyperapp&quot;</span>
 </code></pre>
 <p>Or download directly from <a href="https://unpkg.com/hyperapp" target="_blank">unpkg</a>, <a href="https://cdn.jsdelivr.net/npm/hyperapp@latest/dist/hyperapp.js" target="_blank">jsDelivr</a>, or <a href="https://cdnjs.com/libraries/hyperapp" target="_blank">CDNJS</a>.</p>
 <pre class="language-"><code class="lang-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>https://unpkg.com/hyperapp<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 <p>Then find it in <code>window.hyperapp</code>.</p>
-<pre class="language-"><code class="lang-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> h<span class="token punctuation">,</span> app <span class="token punctuation">}</span> <span class="token operator">=</span> hyperapp
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> <span class="token punctuation">{</span> h<span class="token punctuation">,</span> app <span class="token punctuation">}</span> <span class="token operator">=</span> hyperapp
 </code></pre>
 <p>We support all ES5-compliant browsers, including Internet Explorer 10 and above.</p>
 
@@ -429,7 +432,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.2.2","depth":2,"next":{"title":"Concepts","level":"1.3","depth":1,"path":"concepts/README.md","ref":"concepts/README.md","articles":[{"title":"Components","level":"1.3.1","depth":2,"path":"concepts/components.md","ref":"concepts/components.md","articles":[]},{"title":"Lifecycle","level":"1.3.2","depth":2,"path":"concepts/lifecycle.md","ref":"concepts/lifecycle.md","articles":[]},{"title":"Keys","level":"1.3.3","depth":2,"path":"concepts/keys.md","ref":"concepts/keys.md","articles":[]},{"title":"Slices","level":"1.3.4","depth":2,"path":"concepts/slices.md","ref":"concepts/slices.md","articles":[]},{"title":"Modules","level":"1.3.5","depth":2,"path":"concepts/modules.md","ref":"concepts/modules.md","articles":[]},{"title":"Sanitation","level":"1.3.6","depth":2,"path":"concepts/sanitation.md","ref":"concepts/sanitation.md","articles":[]},{"title":"Hydration","level":"1.3.7","depth":2,"path":"concepts/hydration.md","ref":"concepts/hydration.md","articles":[]}]},"previous":{"title":"Hello World","level":"1.2.1","depth":2,"path":"introduction/hello-world.md","ref":"introduction/hello-world.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"introduction/installation.md","mtime":"2017-11-09T19:01:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-11-10T08:55:56.528Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation","level":"1.2.2","depth":2,"next":{"title":"Concepts","level":"1.3","depth":1,"path":"concepts/README.md","ref":"concepts/README.md","articles":[{"title":"Virtual Nodes","level":"1.3.1","depth":2,"path":"concepts/vnodes.md","ref":"concepts/vnodes.md","articles":[]},{"title":"Components","level":"1.3.2","depth":2,"path":"concepts/components.md","ref":"concepts/components.md","articles":[]},{"title":"Lifecycle Events","level":"1.3.3","depth":2,"path":"concepts/lifecycle-events.md","ref":"concepts/lifecycle-events.md","articles":[]},{"title":"Keys","level":"1.3.4","depth":2,"path":"concepts/keys.md","ref":"concepts/keys.md","articles":[]},{"title":"Slices","level":"1.3.5","depth":2,"path":"concepts/slices.md","ref":"concepts/slices.md","articles":[]},{"title":"Sanitation","level":"1.3.6","depth":2,"path":"concepts/sanitation.md","ref":"concepts/sanitation.md","articles":[]},{"title":"Hydration","level":"1.3.7","depth":2,"path":"concepts/hydration.md","ref":"concepts/hydration.md","articles":[]}]},"previous":{"title":"Hello World","level":"1.2.1","depth":2,"path":"introduction/hello-world.md","ref":"introduction/hello-world.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"introduction/installation.md","mtime":"2017-12-19T22:10:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-19T22:15:31.175Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

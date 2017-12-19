@@ -60,7 +60,7 @@
     <link rel="next" href="slices.html" />
     
     
-    <link rel="prev" href="lifecycle.html" />
+    <link rel="prev" href="lifecycle-events.html" />
     
 
     </head>
@@ -161,7 +161,20 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="components.html">
+        <li class="chapter " data-level="1.3.1" data-path="vnodes.html">
+            
+                <a href="vnodes.html">
+            
+                    
+                    Virtual Nodes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="components.html">
             
                 <a href="components.html">
             
@@ -174,12 +187,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="lifecycle.html">
+        <li class="chapter " data-level="1.3.3" data-path="lifecycle-events.html">
             
-                <a href="lifecycle.html">
+                <a href="lifecycle-events.html">
             
                     
-                    Lifecycle
+                    Lifecycle Events
             
                 </a>
             
@@ -187,7 +200,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.3" data-path="keys.html">
+        <li class="chapter active" data-level="1.3.4" data-path="keys.html">
             
                 <a href="keys.html">
             
@@ -200,25 +213,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="slices.html">
+        <li class="chapter " data-level="1.3.5" data-path="slices.html">
             
                 <a href="slices.html">
             
                     
                     Slices
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="modules.html">
-            
-                <a href="modules.html">
-            
-                    
-                    Modules
             
                 </a>
             
@@ -375,28 +375,30 @@
                                 
                                 <h1 id="keys">Keys</h1>
 <p>Keys help identify which nodes were added, changed or removed from a list when a view is rendered. A key must be unique among sibling-nodes.</p>
-<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> ImageGallery <span class="token operator">=</span> images <span class="token operator">=</span><span class="token operator">&gt;</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> ImageGallery <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> images <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
-    <span class="token punctuation">{</span>images<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> hash<span class="token punctuation">,</span> url<span class="token punctuation">,</span> description <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">{</span>images<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> hash<span class="token punctuation">,</span> url<span class="token punctuation">,</span> description <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>hash<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>url<span class="token punctuation">}</span></span> <span class="token attr-name">alt</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>description<span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-    <span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
 </code></pre>
 <p>By setting the <code>key</code> property on a virtual node, you declare that the node should correspond to a particular DOM element. This allow us to re-order the element into its new position, if the position changed, rather than risk destroying it.</p>
 <p>Don&apos;t use an array index as key, if the index also specifies the order of siblings. If the position and number of items in a list is fixed, it will make no difference, but if the list is dynamic, the key will change every time the tree is rebuilt.</p>
-<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> PlayerList <span class="token operator">=</span> players <span class="token operator">=</span><span class="token operator">&gt;</span>
+<pre class="language-"><code class="lang-jsx"><span class="token keyword">const</span> PlayerList <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> players <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
     <span class="token punctuation">{</span>players
       <span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
       <span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span>player<span class="token punctuation">,</span> nextPlayer<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> nextPlayer<span class="token punctuation">.</span>score <span class="token operator">-</span> item<span class="token punctuation">.</span>score<span class="token punctuation">)</span>
-      <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>player <span class="token operator">=</span><span class="token operator">&gt;</span>
+      <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>player <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>player<span class="token punctuation">.</span>username<span class="token punctuation">}</span></span> <span class="token attr-name">class</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>player<span class="token punctuation">.</span>isAlive <span class="token operator">?</span> <span class="token string">&quot;alive&quot;</span> <span class="token punctuation">:</span> <span class="token string">&quot;dead&quot;</span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span>
           <span class="token operator">&lt;</span>PlayerCard <span class="token punctuation">{</span><span class="token operator">...</span>player<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
-      <span class="token punctuation">)</span><span class="token punctuation">}</span>
+      <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span>
 </code></pre>
 
                                 
@@ -425,7 +427,7 @@
 
             
                 
-                <a href="lifecycle.html" class="navigation navigation-prev " aria-label="Previous page: Lifecycle">
+                <a href="lifecycle-events.html" class="navigation navigation-prev " aria-label="Previous page: Lifecycle Events">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -441,7 +443,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Keys","level":"1.3.3","depth":2,"next":{"title":"Slices","level":"1.3.4","depth":2,"path":"concepts/slices.md","ref":"concepts/slices.md","articles":[]},"previous":{"title":"Lifecycle","level":"1.3.2","depth":2,"path":"concepts/lifecycle.md","ref":"concepts/lifecycle.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"concepts/keys.md","mtime":"2017-11-09T19:01:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-11-10T08:55:56.528Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Keys","level":"1.3.4","depth":2,"next":{"title":"Slices","level":"1.3.5","depth":2,"path":"concepts/slices.md","ref":"concepts/slices.md","articles":[]},"previous":{"title":"Lifecycle Events","level":"1.3.3","depth":2,"path":"concepts/lifecycle-events.md","ref":"concepts/lifecycle-events.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"concepts/keys.md","mtime":"2017-12-19T22:10:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-19T22:15:31.175Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
