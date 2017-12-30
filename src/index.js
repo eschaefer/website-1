@@ -46,7 +46,7 @@ app({
         ),
         link(
           {
-            href: "https://temp.deadhare.com/docs"
+            href: "https://hyperapp.js.org/docs"
           },
           [span("READ THE DOCS")]
         )
