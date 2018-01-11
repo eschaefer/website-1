@@ -4,5 +4,6 @@ package-lock.json
 yarn.lock
 
 # For docs generation
-/temp
-/_book
+./temp
+./_book
+./docs
