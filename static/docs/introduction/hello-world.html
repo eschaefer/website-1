@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="installation.html" />
+    <link rel="next" href="../CONTRIBUTING.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="../" />
     
 
     </head>
@@ -94,7 +94,7 @@
                 <a href="../">
             
                     
-                    Read Me
+                    Introduction
             
                 </a>
             
@@ -102,21 +102,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="./">
-            
-                <a href="./">
-            
-                    
-                    Introduction
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter active" data-level="1.2.1" data-path="hello-world.html">
+        <li class="chapter active" data-level="1.2" data-path="hello-world.html">
             
                 <a href="hello-world.html">
             
@@ -129,12 +115,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="installation.html">
+        <li class="chapter " data-level="1.3" data-path="../CONTRIBUTING.html">
             
-                <a href="installation.html">
+                <a href="../CONTRIBUTING.html">
             
                     
-                    Installation
+                    Contribution Guidelines
             
                 </a>
             
@@ -143,25 +129,13 @@
         </li>
     
 
-            </ul>
-            
-        </li>
     
-        <li class="chapter " data-level="1.3" data-path="../concepts/">
-            
-                <a href="../concepts/">
-            
-                    
-                    Concepts
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
+        
+        <li class="header">Concepts</li>
+        
+        
     
-        <li class="chapter " data-level="1.3.1" data-path="../concepts/vnodes.html">
+        <li class="chapter " data-level="2.1" data-path="../concepts/vnodes.html">
             
                 <a href="../concepts/vnodes.html">
             
@@ -174,7 +148,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="../concepts/keys.html">
+        <li class="chapter " data-level="2.2" data-path="../concepts/keys.html">
             
                 <a href="../concepts/keys.html">
             
@@ -187,7 +161,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../concepts/components.html">
+        <li class="chapter " data-level="2.3" data-path="../concepts/components.html">
             
                 <a href="../concepts/components.html">
             
@@ -200,7 +174,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="../concepts/lifecycle-events.html">
+        <li class="chapter " data-level="2.4" data-path="../concepts/lifecycle-events.html">
             
                 <a href="../concepts/lifecycle-events.html">
             
@@ -213,7 +187,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="../concepts/sanitation.html">
+        <li class="chapter " data-level="2.5" data-path="../concepts/sanitation.html">
             
                 <a href="../concepts/sanitation.html">
             
@@ -226,7 +200,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.6" data-path="../concepts/hydration.html">
+        <li class="chapter " data-level="2.6" data-path="../concepts/hydration.html">
             
                 <a href="../concepts/hydration.html">
             
@@ -240,25 +214,13 @@
         </li>
     
 
-            </ul>
-            
-        </li>
     
-        <li class="chapter " data-level="1.4" data-path="../tutorials/">
-            
-                <a href="../tutorials/">
-            
-                    
-                    Tutorials
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
+        
+        <li class="header">Tutorials</li>
+        
+        
     
-        <li class="chapter " data-level="1.4.1" data-path="../tutorials/tweetbox.html">
+        <li class="chapter " data-level="3.1" data-path="../tutorials/tweetbox.html">
             
                 <a href="../tutorials/tweetbox.html">
             
@@ -271,7 +233,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../tutorials/gif-search.html">
+        <li class="chapter " data-level="3.2" data-path="../tutorials/gif-search.html">
             
                 <a href="../tutorials/gif-search.html">
             
@@ -284,30 +246,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../tutorials/countdown-timer.html">
+        <li class="chapter " data-level="3.3" data-path="../tutorials/countdown-timer.html">
             
                 <a href="../tutorials/countdown-timer.html">
             
                     
                     Countdown Timer
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="../CONTRIBUTING.html">
-            
-                <a href="../CONTRIBUTING.html">
-            
-                    
-                    Contributing
             
                 </a>
             
@@ -449,7 +393,7 @@ window.main = app(state, actions, view, document.body)
 <p>The view describes your application user interface as a function of the state and actions. This function is called every time we need to re-render because the state has changed.</p>
 <pre class="language-"><code class="lang-js"><span class="token keyword">const</span> view <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">,</span> actions<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">&quot;h1&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">&quot;Hello World!&quot;</span><span class="token punctuation">)</span>
 </code></pre>
-<p>The <code>h()</code> function returns a <a href="vnodes.md">virtual node</a>, a plain object that describes a DOM tree. Hyperapp consumes this object to update the DOM.</p>
+<p>The <code>h()</code> function returns a <a href="../concepts/vnodes.html">virtual node</a>, a plain object that describes a DOM tree. Hyperapp consumes this object to update the DOM.</p>
 <p>We use <a href="https://facebook.github.io/jsx/" target="_blank">JSX</a> in examples throughout the documentation for familiarity, but you are not required to use it at all.</p>
 <p>Alternatives include <a href="https://github.com/choojs/hyperx" target="_blank">hyperx</a>, <a href="https://github.com/trueadm/t7" target="_blank">t7</a> and <a href="https://github.com/hyperapp/html" target="_blank">@hyperapp/html</a>.</p>
 <pre class="language-"><code class="lang-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
@@ -509,12 +453,12 @@ const main = app(state, actions, view, document.body)
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="installation.html" class="navigation navigation-next " aria-label="Next page: Installation">
+                <a href="../CONTRIBUTING.html" class="navigation navigation-next " aria-label="Next page: Contribution Guidelines">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -525,7 +469,7 @@ const main = app(state, actions, view, document.body)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Hello World","level":"1.2.1","depth":2,"next":{"title":"Installation","level":"1.2.2","depth":2,"path":"introduction/installation.md","ref":"introduction/installation.md","articles":[]},"previous":{"title":"Introduction","level":"1.2","depth":1,"path":"introduction/README.md","ref":"introduction/README.md","articles":[{"title":"Hello World","level":"1.2.1","depth":2,"path":"introduction/hello-world.md","ref":"introduction/hello-world.md","articles":[]},{"title":"Installation","level":"1.2.2","depth":2,"path":"introduction/installation.md","ref":"introduction/installation.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"introduction/hello-world.md","mtime":"2017-12-30T00:10:49.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-12-30T15:24:25.447Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Hello World","level":"1.2","depth":1,"next":{"title":"Contribution Guidelines","level":"1.3","depth":1,"path":"CONTRIBUTING.md","ref":"CONTRIBUTING.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["edit-link","prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{},"github":{"url":"https://github.com/hyperapp/hyperapp/"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"Edit This Page","base":"https://github.com/hyperapp/hyperapp/tree/master/docs"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchorjs":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"version":"1.0.0"},"title":"Hyperapp documentation","gitbook":"3.2.2"},"file":{"path":"introduction/hello-world.md","mtime":"2018-01-11T13:28:27.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2018-01-11T13:56:56.718Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
