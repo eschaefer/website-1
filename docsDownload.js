@@ -17,7 +17,6 @@ const HYPERAPP_ZIP =
   "https://github.com/hyperapp/hyperapp/archive/master.zip"
 
 const SUMMARY_HEAD = '# Summary';
-const README_HEAD = '* [Read Me](README.md)'
 
 shell.echo("Grabbing Hyperapp docs...")
 shell.mkdir(TEMP_FOLDER)
@@ -27,8 +26,7 @@ shell.exec(`unzip -o hyperapp-master.zip`)
 shell.mv("-f", TEMP_DOCS, MAIN_FOLDER)
 
 shell.cp(NEW_README, NEW_SUMMARY);
-shell.exec(`sed -i -e 1,2d ${NEW_SUMMARY}`);
-shell.exec(`sed -i '1i ${README_HEAD}' ${NEW_SUMMARY}`);
+shell.exec(`sed -i -e 1,3d ${NEW_SUMMARY}`);
 shell.exec(`sed -i '1i ${SUMMARY_HEAD}' ${NEW_SUMMARY}`);
 
 shell.mv("-f", PROJECT_README, NEW_DOCS)
